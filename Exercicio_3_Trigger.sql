@@ -16,7 +16,7 @@ BEGIN
 END
 
 
-/*------------ VERIFICAR ESTOQUE ------------*/
+/*------------ ATUALIZAR ESTOQUE ------------*/
 CREATE TRIGGER tr_VerificaEstoque
 ON dbo.AulaVendas
 INSTEAD OF INSERT
@@ -40,9 +40,9 @@ BEGIN
 			END
 		ELSE 
 			BEGIN 
-				PRINT 'Quantidade acima do estoque mínimo'
+				PRINT 'Quantidade acima do estoque mÃ­nimo'
 					  + ' - Estoque atual: ' + CAST(@estoque AS VARCHAR(10)) 
-					  + ' - Estoque mínimo ' + CAST(@estoqueMin AS VARCHAR(10))
+					  + ' - Estoque mÃ­nimo ' + CAST(@estoqueMin AS VARCHAR(10))
 					  + ' - Quantidade solicitada: ' + CAST(@quantidade AS VARCHAR(10)) + '.';
 			END
 	ELSE 
