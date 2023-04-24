@@ -3,7 +3,7 @@ Resolução de exercícios envolvendo T-SQL e MS SQL Server
 #### Base de dados utlizada: AdventureWorks2019 -> cedida pela Microsoft
 
 <details>
-  <summary>EXERCÍCIO 1</summary>
+  <summary>EXERCÍCIO 1 - Functions</summary>
   
 > 1. Criar a função udf_MesCorrente que recebe um parâmetros com uma data e devolve o nome do mês
 relativo a data informada (janeiro, fevereiro, março, etc). Se a data informada for nula deve considerar
@@ -13,7 +13,7 @@ retornando o resultado da operação.
 </details>
 
 <details>
-  <summary>EXERCÍCIO 2</summary>
+  <summary>EXERCÍCIO 2 - Functions</summary>
 
 > 1. Criar a função udf_FormatarNome que recebe como parâmetro: a chave de identificação da pessoa e
 o tipo de formatação que deve ser aplicada. Retorna o texto do nome conforme formatação desejada.
@@ -25,4 +25,20 @@ o tipo de formatação que deve ser aplicada. Retorna o texto do nome conforme f
 
 #### Exemplo:
 <img src="https://uploaddeimagens.com.br/images/004/433/417/original/img1.png?1681701669" />
+</details>
+
+<details>
+  <summary>EXERCÍCIO 3 - Triggers</summary>
+  
+  Construa triggers que atendam aos requisitos a seguir descritos:
+  > 1. Execute o script de preparação de banco de dados: http://www.fileconvoy.com/dfl.php?id=gbfc5de36d0a3fb8e1000490585ad563d68e317a973
+  > 2. Após inserido um novo registro na tabela AulaVendas a trigger deve atualizar o estoque da tabela, ou seja, abater a
+  quantidade vendida do estoque do produto.
+  > 3. Quando realizado cadastro de uma venda ANTES de efetivá-la deve verificar se a quantidade indicada para a venda existe
+  no estoque no produto (AulaProduto), se o estoque for suficiente para atender o pedido deve efetivar a venda caso
+  contrário deve exibir uma mensagem informando a inexistência de estoque. Utilizar o comando “PRINT” para exibir a
+  mensagem. Esta mensagem deve possuir as informações de: nome do produto, estoque atual e a quantidade solicitada.
+  > 4. Quando for realizada uma atualização na tabela de produtos (AulaProduto) deve ser realizada a atualização do preço em
+  todas as vendas cujo valor estiver inferior ao indicado para o produto.
+  
 </details>
