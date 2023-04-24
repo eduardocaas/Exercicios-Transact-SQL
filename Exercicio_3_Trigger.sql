@@ -16,7 +16,7 @@ BEGIN
 END
 
 
-/*------------ ATUALIZAR ESTOQUE ------------*/
+/*------------ VERIFICAR ESTOQUE ------------*/
 CREATE TRIGGER tr_VerificaEstoque
 ON dbo.AulaVendas
 INSTEAD OF INSERT
@@ -53,8 +53,7 @@ BEGIN
 		END
 END
 
-/*------------ VERIFICAR ESTOQUE ------------*/	
-
+/*------------ ATUALIZAR PREÇO ------------*/	
 CREATE TRIGGER dbo.AtualizaPreco
 ON dbo.AulaProduto
 AFTER UPDATE
