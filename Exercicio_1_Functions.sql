@@ -1,4 +1,4 @@
-/*-----------NOME MÊS-----------*/
+/*-----------NOME MÃŠS-----------*/
 CREATE FUNCTION dbo.udf_MesCorrente (@Data DATE = NULL)
 RETURNS VARCHAR(30)
 AS
