@@ -1,7 +1,13 @@
 # Exercícios Transact-SQL
 Resolução de exercícios envolvendo T-SQL e MS SQL Server
-#### Base de dados utlizada: AdventureWorks2019 -> cedida pela Microsoft
+<details>
+<summary>
+  <h4>Base de dados utlizada: AdventureWorks2019 -> cedida pela Microsoft</h4>
+</summary>
 
+> Link: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms
+
+</details>
 <details>
   <summary>EXERCÍCIO 1 - Functions</summary>
   
