@@ -48,3 +48,17 @@ o tipo de formatação que deve ser aplicada. Retorna o texto do nome conforme f
   todas as vendas cujo valor estiver inferior ao indicado para o produto.
   
 </details>
+
+<details>
+  <summary>EXERCÍCIO 4 - Views</summary>
+  
+  Deve ser criada uma a VIEW de nome VW_COLABORADORES capaz de atender
+  aos requisitos abaixo. Essa view será a única fonte de consulta de dados
+  > 1. Listar todos os colaboradores da empresa com: Nome Completo, Cargo, Data de Nascimento, Estado
+  Civil e Idade.
+  > 2. Contabilizar a quantidade de colaboradores por cargo.
+  > 3. Identificar a origem destes colaboradores através de seus endereços. Apresentar as informações de
+  Endereço, Pais, Estado, Cidade.
+  > 4. Contabilizar o número de colaboradores por País e Estado.
+    
+</details>
