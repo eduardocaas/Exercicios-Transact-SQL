@@ -62,3 +62,11 @@ o tipo de formatação que deve ser aplicada. Retorna o texto do nome conforme f
   > 4. Contabilizar o número de colaboradores por País e Estado.
     
 </details>
+
+<details>
+  <summary>EXERCÍCIO 5 - Stored Procedure</summary>
+  
+  > Criar a procedure usp_Margem que recebe como 2 parâmetros e valores (moeda) e calcule a
+    diferença percentual entre eles.
+  
+</details>
