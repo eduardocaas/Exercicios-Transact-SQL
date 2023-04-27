@@ -70,3 +70,12 @@ o tipo de formatação que deve ser aplicada. Retorna o texto do nome conforme f
     diferença percentual entre eles.
   
 </details>
+
+<details>
+  <summary>EXERCÍCIO 6 - Stored Procedure</summary>
+  
+  > Criar a procedure usp_Calculadora que recebe como 4 parâmetros: 2 correspondente aos valores de
+    cálculo, 1 para a operação (M=multiplicação, S=soma, U=Subtração, D=Divisão e P=Potenciação) e por
+    último um parâmetro de saída com o resultado da operação solicitada
+  
+</details>
