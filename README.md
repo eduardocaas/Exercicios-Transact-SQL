@@ -79,3 +79,14 @@ o tipo de formatação que deve ser aplicada. Retorna o texto do nome conforme f
     último um parâmetro de saída com o resultado da operação solicitada
   
 </details>
+
+<details>
+  <summary>EXERCÍCIO 7 - Stored Procedure</summary>
+  
+  > Criar a procedure usp_Desconto que recebe como os parâmetros: 1 correspondente aos preço do
+    item, 1 para a quantidade. Se o total das compras for superior ate 1000 não tem desconto, se estiver
+    entre 1001 e 2000 terá 5% de desconto se for superior a 2001 será de 10%. Deve apresentar o valor
+    total da compra SEM DESCONTO e o valor do DESCONTO como parâmetro de saída e uma mensagem
+    informando o valor e percentual de desconto.
+  
+</details>
