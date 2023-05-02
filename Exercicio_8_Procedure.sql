@@ -1,7 +1,7 @@
 /*-------CONSULTA PARA IDENTIFICAR DADOS-------*/
 SELECT vc.*, sp.Bonus FROM VW_COLABORADORES vc INNER JOIN Sales.SalesPerson sp ON vc.BusinessEntityID = sp.BusinessEntityID;
 
-/*-------PROCEDURE RETORNA BÔNUS DE COLABORADOR-------*/
+/*-------PROCEDURE RETORNA BÃ”NUS DE COLABORADOR-------*/
 CREATE PROCEDURE usp_RetornaBonus
 	@idColaborador NUMERIC,
 	@nomeColaborador VARCHAR(200),
@@ -16,14 +16,12 @@ BEGIN
 	OR vc.NomeCompleto LIKE '%' + @nomeColaborador + '%';
 END;
 
-
-
 /*-------TESTE COM ID-------*/
 DECLARE @resultado MONEY;
 EXEC usp_RetornaBonus @idColaborador = 281, @nomeColaborador = NULL, @totalBonus = @resultado OUT;
-SELECT @resultado AS Bônus;
+SELECT @resultado AS BÃ´nus;
 
 /*-------TESTE COM NOME-------*/
 DECLARE @resultado MONEY;
 EXEC usp_RetornaBonus @idColaborador = NULL, @nomeColaborador = 'Michael G Blythe', @totalBonus = @resultado OUT;
-SELECT @resultado AS Bônus;
+SELECT @resultado AS BÃ´nus;
