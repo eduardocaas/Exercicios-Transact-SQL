@@ -90,3 +90,13 @@ o tipo de formatação que deve ser aplicada. Retorna o texto do nome conforme f
     informando o valor e percentual de desconto.
   
 </details>
+
+<details>
+  <summary>EXERCÍCIO 8 - Stored Procedure</summary>
+  
+  > Utilizando a view VW_COLABORADORES proposta no exercício 4, construa a procedure
+    usp_RetornaBonus a qual deve retornar o total de bônus de um colaborador. A procedure deve ter
+    como parâmetro: nome do colaborador (opcional) código identificador do colaborador (opcional) e o
+    total de bônus como parâmetro de saída.
+  
+</details>
