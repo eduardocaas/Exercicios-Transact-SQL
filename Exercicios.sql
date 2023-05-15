@@ -20,8 +20,37 @@ AS
 		
 SELECT * FROM vw_ListarVendasPorSubCategoria ORDER BY vw_ListarVendasPorSubCategoria.SubcategoriaID, vw_ListarVendasPorSubCategoria.PedidoID;
 
+CREATE VIEW vw_ListarPedidosAgrupadoPaisAnoMes
+AS
+	SELECT 
+		cr.Name AS 'Nome',
+		YEAR(soh.OrderDate) AS 'Ano',
+		DATENAME(MONTH, soh.OrderDate) AS 'Mês',
+		FORMAT(SUM(sod.LineTotal), 'N2') AS 'Total' 
+	FROM 
+		Sales.SalesOrderHeader soh 
+			INNER JOIN 
+		Sales.SalesOrderDetail sod 
+			ON soh.SalesOrderID = sod.SalesOrderID 
+			INNER JOIN 
+		Sales.SalesTerritory st
+			ON soh.TerritoryID = st.TerritoryID
+			INNER JOIN
+		Person.CountryRegion cr 
+			ON st.CountryRegionCode = cr.CountryRegionCode
+	GROUP BY
+		cr.Name,
+		YEAR(soh.OrderDate),
+		DATENAME(MONTH, soh.OrderDate);
 
-SELECT cr.Name FROM Sales.SalesOrderHeader soh
-INNER JOIN Sales.Customer sc ON soh.TerritoryID = sc.TerritoryID
-INNER JOIN Person.StateProvince sp ON sc.TerritoryID = sp.TerritoryID
-INNER JOIN Person.CountryRegion cr ON sp.CountryRegionCode = cr.CountryRegionCode
+SELECT * FROM vw_ListarPedidosAgrupadoPaisAnoMes;
+
+CREATE PROCEDURE sp_CalculoTriangulo
+	@valorA NUMERIC,
+	@valorB NUMERIC,
+	@valorC NUMERIC,
+	@valorPerimetro NUMERIC OUT,
+	@tipoTriangulo VARCHAR(50) OUT
+AS
+BEGIN
+	SET @valorPerimetro = @valorA + @valorB + @valorC
