@@ -1,7 +1,7 @@
-/*---------QUEST√O 2 - FUN«√O NOME DO DIA DA SEMANA---------*/
+/*---------QUEST√ÉO 2 - FUN√á√ÉO NOME DO DIA DA SEMANA---------*/
 CREATE FUNCTION udf_DiaDaSemana
 	(@Data DATE)
-RETURNS VARCHAR(30)
+RETURNS VARCHAR(20)
 AS
 BEGIN
 	DECLARE @DiaDaSemana AS VARCHAR(30)
@@ -10,11 +10,11 @@ BEGIN
 		CASE DATEPART(DW, @Data)
 			WHEN 1 THEN 'Domingo'
 			WHEN 2 THEN 'Segunda'
-			WHEN 3 THEN 'TerÁa'
+			WHEN 3 THEN 'Ter√ßa'
 			WHEN 4 THEN 'Quarta'
 			WHEN 5 THEN 'Quinta'
 			WHEN 6 THEN 'Sexta'
-			WHEN 7 THEN 'S·bado'
+			WHEN 7 THEN 'S√°bado'
 			ELSE 'Indefinido' 
 		END
 	RETURN @DiaDaSemana
@@ -23,10 +23,10 @@ END;
 SELECT dbo.udf_DiaDaSemana('2023-05-17') AS Dia;
 
 
-/*---------FUN«√O AUXILIAR PARA QUEST√O 3---------*/
+/*---------FUN√á√ÉO AUXILIAR PARA QUEST√ÉO 3---------*/
 CREATE FUNCTION udf_NomeMes
 	(@Data DATE)
-RETURNS VARCHAR(30)
+RETURNS VARCHAR(20)
 AS
 BEGIN
 	DECLARE @mes AS VARCHAR(30)
@@ -35,7 +35,7 @@ BEGIN
 		CASE DATEPART(MM, @Data)
 			WHEN 1 THEN 'Janeiro'
 			WHEN 2 THEN 'Fevereiro'
-			WHEN 3 THEN 'MarÁo'
+			WHEN 3 THEN 'Mar√ßo'
 			WHEN 4 THEN 'Abril'
 			WHEN 5 THEN 'Maio'
 			WHEN 6 THEN 'Junho'
@@ -57,17 +57,17 @@ SELECT * FROM FERIADOS;
 SELECT * FROM AGENDA;
 
 
-/*---------QUEST√O 3 - PROCEDURE CARGA AGENDA---------*/
+/*---------QUEST√ÉO 3 - PROCEDURE CARGA AGENDA---------*/
 CREATE PROCEDURE usp_CargaAgenda
 	@dataInicio DATE,
 	@dataFinal DATE
 AS
 BEGIN 
 	DECLARE @dataAtual DATE
-	DECLARE @mes VARCHAR(30)
-	DECLARE @diaDaSemana VARCHAR(30)
+	DECLARE @mes VARCHAR(20)
+	DECLARE @diaDaSemana VARCHAR(20)
 	DECLARE @feriado CHAR(1)
-	DECLARE @descricao VARCHAR(50)
+	DECLARE @descricao VARCHAR(500)
 
 	SET @dataAtual = @dataInicio
 
@@ -86,7 +86,7 @@ BEGIN
 		ELSE 
 			BEGIN
 				SET @feriado = 'N'
-				SET @descricao = 'Dia ˙til'
+				SET @descricao = 'Dia √∫til'
 			END	
 
 		SET @diaDaSemana = dbo.udf_DiaDaSemana(@dataAtual)
