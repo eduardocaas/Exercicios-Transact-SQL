@@ -103,3 +103,21 @@ EXEC dbo.usp_CargaAgenda '2023-09-01', '2023-09-30';
 SELECT * FROM FERIADOS;
 SELECT * FROM AGENDA;
 
+/*---------QUESTÃO 4 - VIEW COLABORADORES---------*/
+CREATE VIEW vw_InfColaboradores
+AS
+	SELECT 
+		(p.FirstName + ' ' + ISNULL(p.MiddleName, '') + ' ' + p.LastName) AS Nome,
+		e.JobTitle AS Cargo,
+		e.BirthDate AS Nascimento,
+		YEAR(GETDATE()) - YEAR(e.BirthDate) - IIF(MONTH(GETDATE())*32 + DAY(GETDATE()) < MONTH(e.birthDate)*32 + DAY(e.birthDate), 1, 0) AS Idade,
+		dbo.udf_NomeMes(e.BirthDate) AS 'Mês Nascimento',
+		dbo.udf_DiaDaSemana(e.BirthDate) AS 'Dia Nascimento'
+	FROM 
+		Person.Person p 
+		INNER JOIN HumanResources.Employee e 
+		ON p.BusinessEntityID = e.BusinessEntityID
+
+
+SELECT * FROM vw_InfColaboradores
+
