@@ -117,6 +117,20 @@ AS
 		Person.Person p 
 		INNER JOIN HumanResources.Employee e 
 		ON p.BusinessEntityID = e.BusinessEntityID
+		
+		
+SELECT
+	p.ProductID AS 'Cod Produto', 
+	p.Name AS 'Nome Produto',
+	ROUND(p.StandardCost, 2) AS 'Preco',
+	pc.Name AS 'Nome Categoria',
+	ps.Name AS 'Nome Subcategoria'
+FROM 
+	Production.Product p 
+	INNER JOIN Production.ProductSubcategory ps
+		ON p.ProductSubcategoryID = ps.ProductSubcategoryID
+	INNER JOIN Production.ProductCategory pc
+		ON ps.ProductCategoryID = pc.ProductCategoryID
 
 
 SELECT * FROM vw_InfColaboradores
