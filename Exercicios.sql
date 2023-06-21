@@ -1,3 +1,5 @@
+USE AdventureWorks2019;
+
 CREATE VIEW vw_ListarVendasPorSubCategoria
 AS 
 	SELECT 
@@ -45,7 +47,7 @@ AS
 
 SELECT * FROM vw_ListarPedidosAgrupadoPaisAnoMes;
 
-CREATE PROCEDURE sp_CalculoTriangulo
+CREATE PROCEDURE usp_CalculoTriangulo
 	@valorA NUMERIC,
 	@valorB NUMERIC,
 	@valorC NUMERIC,
@@ -54,3 +56,10 @@ CREATE PROCEDURE sp_CalculoTriangulo
 AS
 BEGIN
 	SET @valorPerimetro = @valorA + @valorB + @valorC
+	IF @valorA = @valorB AND @valorB = @valorC
+		SET @tipoTriangulo = 'Equilátero'
+	ELSE IF @valorA <> @valorB AND @valorB <> @valorC 
+		SET @tipoTriangulo = 'Escaleno'
+	ELSE 
+		SET @tipoTriangulo =	'Isósceles'
+END
