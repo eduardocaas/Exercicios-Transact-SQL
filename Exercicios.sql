@@ -1,5 +1,5 @@
+/*------------ VIEW  ------------*/
 USE AdventureWorks2019;
-
 CREATE VIEW vw_ListarVendasPorSubCategoria
 AS 
 	SELECT 
@@ -22,6 +22,9 @@ AS
 		
 SELECT * FROM vw_ListarVendasPorSubCategoria ORDER BY vw_ListarVendasPorSubCategoria.SubcategoriaID, vw_ListarVendasPorSubCategoria.PedidoID;
 
+
+/*------------ VIEW  ------------*/
+USE AdventureWorks2019;
 CREATE VIEW vw_ListarPedidosAgrupadoPaisAnoMes
 AS
 	SELECT 
@@ -47,19 +50,76 @@ AS
 
 SELECT * FROM vw_ListarPedidosAgrupadoPaisAnoMes;
 
+
+/*------------ PROCEDURE CÁLCULO PERÍMETRO E TIPO TRIÂNGULO  ------------*/
 CREATE PROCEDURE usp_CalculoTriangulo
 	@valorA NUMERIC,
 	@valorB NUMERIC,
-	@valorC NUMERIC,
-	@valorPerimetro NUMERIC OUT,
-	@tipoTriangulo VARCHAR(50) OUT
+	@valorC NUMERIC
 AS
 BEGIN
-	SET @valorPerimetro = @valorA + @valorB + @valorC
+	DECLARE @valorPerimetro NUMERIC, @tipoTriangulo VARCHAR(50);
+
+	SET @valorPerimetro = @valorA + @valorB + @valorC;
 	IF @valorA = @valorB AND @valorB = @valorC
-		SET @tipoTriangulo = 'Equilátero'
+		SET @tipoTriangulo = 'Equilátero';
 	ELSE IF @valorA <> @valorB AND @valorB <> @valorC 
-		SET @tipoTriangulo = 'Escaleno'
+		SET @tipoTriangulo = 'Escaleno';
 	ELSE 
-		SET @tipoTriangulo =	'Isósceles'
+		SET @tipoTriangulo =	'Isósceles';
+
+	SELECT @tipoTriangulo AS 'Tipo triângulo: ';
 END
+
+EXEC usp_CalculoTriangulo 5, 5 , 5;
+
+/*------------ PROCEDURE TOTAL DE VENDAS DE PRODUTO ENTRE DATAS  ------------*/
+USE AdventureWorks2019;
+CREATE PROCEDURE usp_TotalVendasProdutoData
+	@codProduto INT,
+	@dataInicio DATE,
+	@dataFinal DATE
+AS 
+BEGIN
+	DECLARE @totalVendas INT;
+
+	SELECT @totalVendas = COUNT(*) FROM Sales.SalesOrderHeader AS soh 
+	INNER JOIN Sales.SalesOrderDetail sod
+	ON soh.SalesOrderID = sod.SalesOrderID
+	WHERE sod.ProductID = @codProduto
+	AND soh.OrderDate >= @dataInicio
+	AND soh.OrderDate <= @dataFinal;
+
+	SELECT @totalVendas AS 'Total de vendas'
+END;
+
+EXEC usp_TotalVendasProdutoData 707, '2010-01-01', '2011-06-30';
+
+
+/*------------ FUNÇÃO IDADE  ------------*/
+CREATE FUNCTION fn_IdadeAtual (@data DATE)
+	RETURNS INT 
+AS 
+BEGIN
+	DECLARE @idade AS INT;
+	SET @idade = DATEDIFF(YEAR, @data, GETDATE());
+	RETURN @idade;
+END;
+
+SELECT dbo.fn_IdadeAtual('2000-01-01') AS Idade;
+
+
+/*------------ FUNÇÃO NOME FORMATADO  ------------*/
+USE AdventureWorks2019;
+CREATE FUNCTION fn_FormatarNome (@codPessoa INT)
+	RETURNS VARCHAR(100)
+AS 
+BEGIN
+	DECLARE @nomeCompleto AS VARCHAR(100);
+	SET @nomeCompleto = (
+	SELECT p.FirstName + ' ' + ISNULL(p.MiddleName, '') + ' ' + p.LastName FROM Person.Person p WHERE p.BusinessEntityID = @codPessoa);
+	RETURN @nomeCompleto;
+END;
+
+SELECT dbo.fn_FormatarNome(3) AS 'Nome completo';
+
